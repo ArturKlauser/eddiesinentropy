@@ -21,7 +21,7 @@
 <meta property="og:description" content="How to connect a ChromeBook client to an OpenVPN server running on Raspberry Pi.">
 <meta property="og:locale" content="en">
 <meta property="og:image" content="https://nexus.eddiesinentropy.net/2020/02/04/Raspberry-Pi-OpenVPN-Server-for-ChromeBooks/ChromeBook-RaspberryPi-OpenVPN.png">
-<meta property="og:updated_time" content="2020-02-03T17:01:07.000Z">
+<meta property="og:updated_time" content="2020-02-07T07:48:45.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Raspberry Pi OpenVPN Server for ChromeBooks">
 <meta name="twitter:description" content="How to connect a ChromeBook client to an OpenVPN server running on Raspberry Pi.">
@@ -145,7 +145,8 @@ ga('send', 'pageview');
         <div class="article-entry" itemprop="articleBody">
             <img src="/2020/02/04/Raspberry-Pi-OpenVPN-Server-for-ChromeBooks/ChromeBook-RaspberryPi-OpenVPN.png" title="ChromeBook connecting to OpenVPN on RaspberryPi"> <!-- header image -->
 <p>How to connect a ChromeBook client to an OpenVPN server running on Raspberry Pi.<br><a id="more"></a></p>
-<p>Running <a href="https://github.com/OpenVPN/openvpn" target="_blank" rel="noopener">OpenVPN</a> on a <a href="https://www.raspberrypi.org/" target="_blank" rel="noopener">Raspberry Pi</a> located on your home network is a great way to securely tunnel into your home network while you’re away, allowing you to connect to all the devices in your home. It also serves to keep your traffic secure while you’re roaming on untrusted public WiFi networks. <a href="https://www.google.com/chromebook/" target="_blank" rel="noopener">ChromeBooks</a> are an interesting alternative to more fully fledged laptops when you’re travelling and want to stay connected. This article shows how this OpenVPN setup works with ChromeBooks, which are rather picky when it comes to configuring them as OpenVPN clients.</p>
+<p><img src="/images/medium-icon.png" alt title="Medium Icon"></p>
+<p>Running <a href="https://github.com/OpenVPN/openvpn" target="_blank" rel="noopener">OpenVPN</a> on a <a href="https://www.raspberrypi.org/" target="_blank" rel="noopener">Raspberry Pi</a> located on your home network is a great way to securely tunnel into your home network while you’re away, allowing you to connect to all the devices in your home. It also serves to keep your traffic secure while you’re roaming on untrusted public WiFi networks. <a href="https://www.google.com/chromebook/" target="_blank" rel="noopener">ChromeBooks</a> are an interesting alternative to more fully fledged laptops when you’re travelling and want to stay connected. This article shows how this OpenVPN setup works with ChromeBooks, which are rather picky when it comes to configuring them as OpenVPN clients. It doesn’t require the ChromeBook to be able to run Android apps, which also allows it to work on older ChromeBooks.</p>
 <h2 id="Overview"><a href="#Overview" class="headerlink" title="Overview"></a>Overview</h2><p>There are a considerable number of articles one can find about setting up an OpenVPN server on their home network. There are also many ways how they go about getting it done. Surprisingly though, finding a setup that works for letting you connect with a ChromeBook to your OpenVPN turns out more challenging than expected. In the rest of this article we’ll go through all the steps you need to arrive at a fully functional setup that does work with an <a href="https://www.theverge.com/2013/10/23/4948120/acer-c720-chromebook-review" target="_blank" rel="noopener">Acer C720</a> ChromeBook. This is one of the earlier ChromeBook models and probably on the more restrictive side when it comes to OpenVPN setups. Of course this OpenVPN setup also works for other clients like PCs, Macs, Android phones and tablets etc. which are a bit more forgiving with respect to the parameters they support. The following steps are necessary:</p>
 <ul>
 <li><strong>Dynamic DNS</strong>: If you want to be able to connect to your home network from the outside, you’ll need a way to find it’s IP address. Most internet service providers, like cable or telephone companies, don’t assign a fixed static IP address to you which you could use. The solution is to associate your Raspberry Pi with a dynamic DNS name and update that with the public IP address of your home internet connection whenever that IP address changes.</li>
@@ -340,11 +341,11 @@ ga('send', 'pageview');
         "genre": "",
         "datePublished": "2020-02-03",
         "dateCreated": "2020-02-03",
-        "dateModified": "2020-02-03",
+        "dateModified": "2020-02-06",
         "url": "https://nexus.eddiesinentropy.net/2020/02/04/Raspberry-Pi-OpenVPN-Server-for-ChromeBooks/",
         "description": " 
 How to connect a ChromeBook client to an OpenVPN server running on Raspberry Pi."
-        "wordCount": 2400
+        "wordCount": 2425
     }
 </script>
 
