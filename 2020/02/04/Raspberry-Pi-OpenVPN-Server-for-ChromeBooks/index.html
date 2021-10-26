@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
-<head><meta name="generator" content="Hexo 3.8.0">
-    <meta charset="utf-8">
+<head>
+    <meta charset="utf-8" />
 
     
 
@@ -10,43 +10,58 @@
     
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     
-        <meta name="keywords" content="Raspberry Pi,ChromeBook">
+    <meta name="keywords" content="Raspberry Pi,ChromeBook" />
     
     <meta name="description" content="How to connect a ChromeBook client to an OpenVPN server running on Raspberry Pi.">
-<meta name="keywords" content="Raspberry Pi,ChromeBook">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Raspberry Pi OpenVPN Server for ChromeBooks">
-<meta property="og:url" content="https://nexus.eddiesinentropy.net/2020/02/04/Raspberry-Pi-OpenVPN-Server-for-ChromeBooks/index.html">
+<meta property="og:url" content="https://nexus.eddiesinentropy.net/2020/02/04/Raspberry-Pi-OpenVPN-Server-for-ChromeBooks/">
 <meta property="og:site_name" content="Eddies in Entropy">
 <meta property="og:description" content="How to connect a ChromeBook client to an OpenVPN server running on Raspberry Pi.">
-<meta property="og:locale" content="en">
+<meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://nexus.eddiesinentropy.net/2020/02/04/Raspberry-Pi-OpenVPN-Server-for-ChromeBooks/ChromeBook-RaspberryPi-OpenVPN.png">
-<meta property="og:updated_time" content="2020-02-07T07:48:45.000Z">
+<meta property="article:published_time" content="2020-02-04T02:00:00.000Z">
+<meta property="article:modified_time" content="2020-02-07T07:48:45.358Z">
+<meta property="article:author" content="Artur Klauser">
+<meta property="article:tag" content="Raspberry Pi">
+<meta property="article:tag" content="ChromeBook">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Raspberry Pi OpenVPN Server for ChromeBooks">
-<meta name="twitter:description" content="How to connect a ChromeBook client to an OpenVPN server running on Raspberry Pi.">
 <meta name="twitter:image" content="https://nexus.eddiesinentropy.net/2020/02/04/Raspberry-Pi-OpenVPN-Server-for-ChromeBooks/ChromeBook-RaspberryPi-OpenVPN.png">
     
 
     
 
     
-        <link rel="icon" href="/eddiesinentropy-icon.png">
+        <link rel="icon" href="/eddiesinentropy-icon.png" />
     
 
-    <link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
-    <link rel="stylesheet" href="/libs/titillium-web/styles.css">
-    <link rel="stylesheet" href="/libs/source-code-pro/styles.css">
+    
+<link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
 
-    <link rel="stylesheet" href="/css/style.css">
+    
+<link rel="stylesheet" href="/libs/titillium-web/styles.css">
 
-    <script src="/libs/jquery/3.3.1/jquery.min.js"></script>
+    
+<link rel="stylesheet" href="/libs/source-code-pro/styles.css">
+
+
+    
+<link rel="stylesheet" href="/css/style.css">
+
+
+    
+<script src="/libs/jquery/3.5.0/jquery.min.js"></script>
+
     
     
-        <link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+        
+<link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+
     
     
-        <link rel="stylesheet" href="/libs/justified-gallery/justifiedGallery.min.css">
+        
+<link rel="stylesheet" href="/libs/justified-gallery/justifiedGallery.min.css">
+
     
     
         <script type="text/javascript">
@@ -62,10 +77,11 @@ ga('send', 'pageview');
 
     
     
+    
 
 
-</head>
-</html>
+<meta name="generator" content="Hexo 5.4.0"></head>
+
 <body>
     <div id="wrap">
         <header id="header">
@@ -125,29 +141,52 @@ ga('send', 'pageview');
         
             <div class="article-meta">
                 
-    <div class="article-date">
-        <a href="/2020/02/04/Raspberry-Pi-OpenVPN-Server-for-ChromeBooks/" class="article-date">
-            <time datetime="2020-02-04T02:00:00.000Z" itemprop="datePublished">2020-02-03</time>
-        </a>
-    </div>
+  <div class="article-date">
+    <i class="fa fa-calendar"></i>
+    <a href="/2020/02/04/Raspberry-Pi-OpenVPN-Server-for-ChromeBooks/" class="article-date">
+       <time datetime="2020-02-04T02:00:00.000Z" itemprop="datePublished">2020-02-03</time>
+    </a>
+  </div>
 
-		
+
+<div class="article-date">
+  <i class="fa fa-calendar-plus-o"></i>
+  <a href="/2020/02/04/Raspberry-Pi-OpenVPN-Server-for-ChromeBooks/" class="article-date">
+     <time datetime="2020-02-07T07:48:45.358Z" itemprop="dateModified">2020-02-06</time>
+  </a>
+</div>
+
+
+                
 
                 
     <div class="article-tag">
         <i class="fa fa-tag"></i>
-        <a class="tag-link" href="/tags/ChromeBook/">ChromeBook</a>, <a class="tag-link" href="/tags/Raspberry-Pi/">Raspberry Pi</a>
+        <a class="tag-link-link" href="/tags/ChromeBook/" rel="tag">ChromeBook</a>, <a class="tag-link-link" href="/tags/Raspberry-Pi/" rel="tag">Raspberry Pi</a>
     </div>
+
+                
+
+                
 
             </div>
         
         
         <div class="article-entry" itemprop="articleBody">
-            <img src="/2020/02/04/Raspberry-Pi-OpenVPN-Server-for-ChromeBooks/ChromeBook-RaspberryPi-OpenVPN.png" title="ChromeBook connecting to OpenVPN on RaspberryPi"> <!-- header image -->
-<p>How to connect a ChromeBook client to an OpenVPN server running on Raspberry Pi.<br><a id="more"></a></p>
-<p><img src="/images/medium-icon.png" alt title="Medium Icon"></p>
-<p>Running <a href="https://github.com/OpenVPN/openvpn" target="_blank" rel="noopener">OpenVPN</a> on a <a href="https://www.raspberrypi.org/" target="_blank" rel="noopener">Raspberry Pi</a> located on your home network is a great way to securely tunnel into your home network while you’re away, allowing you to connect to all the devices in your home. It also serves to keep your traffic secure while you’re roaming on untrusted public WiFi networks. <a href="https://www.google.com/chromebook/" target="_blank" rel="noopener">ChromeBooks</a> are an interesting alternative to more fully fledged laptops when you’re travelling and want to stay connected. This article shows how this OpenVPN setup works with ChromeBooks, which are rather picky when it comes to configuring them as OpenVPN clients. It doesn’t require the ChromeBook to be able to run Android apps, which also allows it to work on older ChromeBooks.</p>
-<h2 id="Overview"><a href="#Overview" class="headerlink" title="Overview"></a>Overview</h2><p>There are a considerable number of articles one can find about setting up an OpenVPN server on their home network. There are also many ways how they go about getting it done. Surprisingly though, finding a setup that works for letting you connect with a ChromeBook to your OpenVPN turns out more challenging than expected. In the rest of this article we’ll go through all the steps you need to arrive at a fully functional setup that does work with an <a href="https://www.theverge.com/2013/10/23/4948120/acer-c720-chromebook-review" target="_blank" rel="noopener">Acer C720</a> ChromeBook. This is one of the earlier ChromeBook models and probably on the more restrictive side when it comes to OpenVPN setups. Of course this OpenVPN setup also works for other clients like PCs, Macs, Android phones and tablets etc. which are a bit more forgiving with respect to the parameters they support. The following steps are necessary:</p>
+            
+
+            
+
+            
+
+            <img src="/2020/02/04/Raspberry-Pi-OpenVPN-Server-for-ChromeBooks/ChromeBook-RaspberryPi-OpenVPN.png" class="" title="ChromeBook connecting to OpenVPN on RaspberryPi"> <!-- header image -->
+
+<p>How to connect a ChromeBook client to an OpenVPN server running on Raspberry Pi.</p>
+<span id="more"></span>
+
+<p><img src="/images/medium-icon.png" title="Medium Icon"></p>
+<p>Running <a target="_blank" rel="noopener" href="https://github.com/OpenVPN/openvpn">OpenVPN</a> on a <a target="_blank" rel="noopener" href="https://www.raspberrypi.org/">Raspberry Pi</a> located on your home network is a great way to securely tunnel into your home network while you’re away, allowing you to connect to all the devices in your home. It also serves to keep your traffic secure while you’re roaming on untrusted public WiFi networks. <a target="_blank" rel="noopener" href="https://www.google.com/chromebook/">ChromeBooks</a> are an interesting alternative to more fully fledged laptops when you’re travelling and want to stay connected. This article shows how this OpenVPN setup works with ChromeBooks, which are rather picky when it comes to configuring them as OpenVPN clients. It doesn’t require the ChromeBook to be able to run Android apps, which also allows it to work on older ChromeBooks.</p>
+<h2 id="Overview"><a href="#Overview" class="headerlink" title="Overview"></a>Overview</h2><p>There are a considerable number of articles one can find about setting up an OpenVPN server on their home network. There are also many ways how they go about getting it done. Surprisingly though, finding a setup that works for letting you connect with a ChromeBook to your OpenVPN turns out more challenging than expected. In the rest of this article we’ll go through all the steps you need to arrive at a fully functional setup that does work with an <a target="_blank" rel="noopener" href="https://www.theverge.com/2013/10/23/4948120/acer-c720-chromebook-review">Acer C720</a> ChromeBook. This is one of the earlier ChromeBook models and probably on the more restrictive side when it comes to OpenVPN setups. Of course this OpenVPN setup also works for other clients like PCs, Macs, Android phones and tablets etc. which are a bit more forgiving with respect to the parameters they support. The following steps are necessary:</p>
 <ul>
 <li><strong>Dynamic DNS</strong>: If you want to be able to connect to your home network from the outside, you’ll need a way to find it’s IP address. Most internet service providers, like cable or telephone companies, don’t assign a fixed static IP address to you which you could use. The solution is to associate your Raspberry Pi with a dynamic DNS name and update that with the public IP address of your home internet connection whenever that IP address changes.</li>
 <li><strong>OpenVPN Setup</strong>: Setting up OpenVPN requires picking a number of configuration parameters that are compatible with the OpenVPN server and the set of expected OpenVPN clients. Once the right parameters are picked you’ll have to create a number of encryption keys. We’ll walk you through all that.</li>
@@ -155,11 +194,11 @@ ga('send', 'pageview');
 <li><strong>ChromeBook Setup</strong>: The last step will be setting up the ChromeBook as an OpenVPN client connected to the OpenVPN server on your Raspberry Pi.</li>
 </ul>
 <h2 id="Dynamic-DNS"><a href="#Dynamic-DNS" class="headerlink" title="Dynamic DNS"></a>Dynamic DNS</h2><p>In order to access the Raspberry Pi on your home network by name, you need to set up a Dynamic DNS record that associates that name with the IP address that is currently assigned to your home by your internet service provider. On your Raspberry Pi you need to install a Dynamic DNS update agent that maintains this association. We’ll use <em>ddclient</em> for this purpose which is a generic update agent that works with a wide range of Dynamic DNS service providers.</p>
-<p>If you happen to own a domain name, you can use your domain registrar to set up a Dynamic DNS record under your domain. Different registrars have different interfaces how to do that, so you have to read their documentation to find out. For example, if you’re using <a href="https://domains.google.com/" target="_blank" rel="noopener">Google Registrar</a> for your domain, in its web UI it has an entry for <em>DNS</em> -&gt; <em>Synthetic records</em> that allows you to add entries for <em>Dynamic DNS</em> as a sub-domain in your domain. You could use <em>vpn.&lt;mydomain&gt;</em> as the Dynamic DNS record for your home VPN setup. That UI shows you a <em>Username</em> and <em>Password</em> which you’ll have to copy to your ddclient configuration on the Raspberry Pi. More on that later.</p>
-<p>If you don’t own a domain name it’s not a problem either. There are a number of Dynamic DNS providers out there with different sets of features and prices. We’ll walk you through using <a href="https://no-ip.com/" target="_blank" rel="noopener">No-IP</a> which offers a free plan for up to 3 Dynamic DNS records. A disadvantage of this free plan is that every 30 days you’ll have to manually confirm that you’re still using it. That’s the price for <em>free</em>. Here is how to set it up:</p>
+<p>If you happen to own a domain name, you can use your domain registrar to set up a Dynamic DNS record under your domain. Different registrars have different interfaces how to do that, so you have to read their documentation to find out. For example, if you’re using <a target="_blank" rel="noopener" href="https://domains.google.com/">Google Registrar</a> for your domain, in its web UI it has an entry for <em>DNS</em> -&gt; <em>Synthetic records</em> that allows you to add entries for <em>Dynamic DNS</em> as a sub-domain in your domain. You could use <em>vpn.&lt;mydomain&gt;</em> as the Dynamic DNS record for your home VPN setup. That UI shows you a <em>Username</em> and <em>Password</em> which you’ll have to copy to your ddclient configuration on the Raspberry Pi. More on that later.</p>
+<p>If you don’t own a domain name it’s not a problem either. There are a number of Dynamic DNS providers out there with different sets of features and prices. We’ll walk you through using <a target="_blank" rel="noopener" href="https://no-ip.com/">No-IP</a> which offers a free plan for up to 3 Dynamic DNS records. A disadvantage of this free plan is that every 30 days you’ll have to manually confirm that you’re still using it. That’s the price for <em>free</em>. Here is how to set it up:</p>
 <ul>
-<li>Sign up for a free No-IP account at <a href="https://www.noip.com/sign-up" target="_blank" rel="noopener">https://www.noip.com/sign-up</a><ul>
-<li>Fill in the <em>Email</em> and <em>Password</em> fields. Note that this is also the password that you’ll have to store (in clear text) in your Raspberry Pi ddclient configuration. So I’d advise to use a <a href="https://passwordsgenerator.net/plus/" target="_blank" rel="noopener">generated password</a>.</li>
+<li>Sign up for a free No-IP account at <a target="_blank" rel="noopener" href="https://www.noip.com/sign-up">https://www.noip.com/sign-up</a><ul>
+<li>Fill in the <em>Email</em> and <em>Password</em> fields. Note that this is also the password that you’ll have to store (in clear text) in your Raspberry Pi ddclient configuration. So I’d advise to use a <a target="_blank" rel="noopener" href="https://passwordsgenerator.net/plus/">generated password</a>.</li>
 <li>Instead of filling in a <em>Hostname</em>, check <em>Create my hostname later</em>.</li>
 <li>Agree to the terms of service and click <em>Free Sign Up</em></li>
 <li>You’ll get sent an email to the address you entered, which contains a link to finish the signup. Wait for that email and click the <em>Confirm Account</em> link in it.</li>
@@ -175,13 +214,19 @@ ga('send', 'pageview');
 </ul>
 </li>
 </ul>
-<p>You have now set up a Dynamic DNS record on the No-IP site. The next step is to configure an update client that keeps that Dynamic DNS record up to date with the public IP address of your home network. For that, log in to your Raspberry Pi and install <em>ddclient</em>:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get update</span><br><span class="line">sudo apt-get install ddclient</span><br></pre></td></tr></table></figure></p>
-<p>Once installed you need to configure it. Make sure the <code>/etc/default/ddclient</code> file contains the following lines:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">run_dhclient=&quot;false&quot;</span><br><span class="line">run_ipup=&quot;false&quot;</span><br><span class="line">run_daemon=&quot;true&quot;</span><br></pre></td></tr></table></figure></p>
-<p>If any of those flags are set differently, change them and save the file. Then edit the <code>/etc/ddclient.conf</code> file. It was filled in with some rudimentary settings by the ddclient installation. Overwrite those with the following contents:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"># no-ip.com</span><br><span class="line">protocol=dyndns2</span><br><span class="line">use=web, web=checkip.dyndns.com, web-skip=&apos;IP Address&apos;</span><br><span class="line">ssl=yes</span><br><span class="line">server=dynupdate.no-ip.com</span><br><span class="line">login=&lt;your-noip-username&gt;</span><br><span class="line">password=&lt;your-noip-password&gt;</span><br><span class="line">&lt;your-noip-hostname&gt;.ddns.net</span><br></pre></td></tr></table></figure></p>
-<p>Here <code>&lt;your-noip-username&gt;</code>, <code>&lt;your-noip-password&gt;</code>, and <code>&lt;your-noip-hostname&gt;</code> should be the <em>User Name</em>, <em>Password</em>, and <em>Hostname</em> you have chosen earlier in the account setup on the No-IP web site. If you have your own domain, use the corresponding values from your domain registrar’s Dynamic DNS settings instead. Once this file is saved restart ddclient:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo systemctl restart ddclient</span><br><span class="line">sudo systemctl status ddclient</span><br></pre></td></tr></table></figure></p>
+<p>You have now set up a Dynamic DNS record on the No-IP site. The next step is to configure an update client that keeps that Dynamic DNS record up to date with the public IP address of your home network. For that, log in to your Raspberry Pi and install <em>ddclient</em>:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get update</span><br><span class="line">sudo apt-get install ddclient</span><br></pre></td></tr></table></figure>
+<p>Once installed you need to configure it. Make sure the <code>/etc/default/ddclient</code> file contains the following lines:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">run_dhclient=&quot;false&quot;</span><br><span class="line">run_ipup=&quot;false&quot;</span><br><span class="line">run_daemon=&quot;true&quot;</span><br></pre></td></tr></table></figure>
+<p>If any of those flags are set differently, change them and save the file. Then edit the <code>/etc/ddclient.conf</code> file. It was filled in with some rudimentary settings by the ddclient installation. Overwrite those with the following contents:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"># no-ip.com</span><br><span class="line">protocol=dyndns2</span><br><span class="line">use=web, web=checkip.dyndns.com, web-skip=&#x27;IP Address&#x27;</span><br><span class="line">ssl=yes</span><br><span class="line">server=dynupdate.no-ip.com</span><br><span class="line">login=&lt;your-noip-username&gt;</span><br><span class="line">password=&lt;your-noip-password&gt;</span><br><span class="line">&lt;your-noip-hostname&gt;.ddns.net</span><br></pre></td></tr></table></figure>
+<p>Here <code>&lt;your-noip-username&gt;</code>, <code>&lt;your-noip-password&gt;</code>, and <code>&lt;your-noip-hostname&gt;</code> should be the <em>User Name</em>, <em>Password</em>, and <em>Hostname</em> you have chosen earlier in the account setup on the No-IP web site. If you have your own domain, use the corresponding values from your domain registrar’s Dynamic DNS settings instead. Once this file is saved restart ddclient:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo systemctl restart ddclient</span><br><span class="line">sudo systemctl status ddclient</span><br></pre></td></tr></table></figure>
 <p>You should see that ddclient has started successfully. If there were errors it might be helpful to look into the <code>/var/log/syslog</code> file for error messages - search for <code>ddclient</code>.</p>
-<h2 id="OpenVPN-Setup"><a href="#OpenVPN-Setup" class="headerlink" title="OpenVPN Setup"></a>OpenVPN Setup</h2><p>The next task is to set up the OpenVPN server on your Raspberry Pi. Out of the many options to do this, I’ll describe a simple one that involves a <a href="https://github.com/angristan/openvpn-install" target="_blank" rel="noopener">setup script</a> that already does all the work for you, you just have to answer some questions. On your Raspberry Pi first install the setup script<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">curl -O https://raw.githubusercontent.com/angristan/openvpn-install/master/openvpn-install.sh</span><br><span class="line">chmod +x openvpn-install.sh</span><br></pre></td></tr></table></figure></p>
-<p>and then run it<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo ./openvpn-install.sh</span><br></pre></td></tr></table></figure></p>
+<h2 id="OpenVPN-Setup"><a href="#OpenVPN-Setup" class="headerlink" title="OpenVPN Setup"></a>OpenVPN Setup</h2><p>The next task is to set up the OpenVPN server on your Raspberry Pi. Out of the many options to do this, I’ll describe a simple one that involves a <a target="_blank" rel="noopener" href="https://github.com/angristan/openvpn-install">setup script</a> that already does all the work for you, you just have to answer some questions. On your Raspberry Pi first install the setup script</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">curl -O https://raw.githubusercontent.com/angristan/openvpn-install/master/openvpn-install.sh</span><br><span class="line">chmod +x openvpn-install.sh</span><br></pre></td></tr></table></figure>
+<p>and then run it</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo ./openvpn-install.sh</span><br></pre></td></tr></table></figure>
 <p>This script will ask you a series of questions and then configure OpenVPN and easy-rsa appropriately. Answer the questions as follows:</p>
 <ul>
 <li><strong>IP address</strong>: it’ll suggest your local IP address which should be fine</li>
@@ -218,7 +263,7 @@ ga('send', 'pageview');
 <li>Press return to let the installation and configuration run. It’ll install all necessary software packages and configures the OpenVPN server according to the answers to the previous questions.<ul>
 <li>Side note: This sets up:<ul>
 <li><code>/etc/openvpn</code> and inside of that <code>easy-rsa</code></li>
-<li><code>/etc/systemd/system/openvpn@.service</code>, which is a copy of <code>/lib/systemd/system/openvpn@.service</code> with some modifications</li>
+<li><code>/etc/systemd/system/openvpn@.service</code>, which is a copy of <code>/lib/systemd/system/openvpn@.service</code> with some modifications</li>
 <li><code>/etc/iptables</code>: <code>add-openvpn-rules.sh</code> and <code>rm-openvpn-rules.sh</code></li>
 <li><code>/etc/systemd/system/iptables-openvpn.service</code> which starts iptables rules</li>
 </ul>
@@ -231,15 +276,18 @@ ga('send', 'pageview');
 </ul>
 </li>
 </ul>
-<p>Now the setup process is complete and you should have the shell prompt back. The last part of the setup process, client setup, has created a file <code>&lt;mychromebook&gt;.ovpn</code> in your home directory on the Raspberry Pi. In order to be a bit more organized I like to create a separate directory where I keep all OpenVPN client files:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">export</span> MYCHROMEBOOK=&lt;mychromebook&gt;</span><br><span class="line">mkdir -p ~/vpn</span><br><span class="line">mv ~/<span class="variable">$MYCHROMEBOOK</span>.ovpn ~/vpn/</span><br></pre></td></tr></table></figure></p>
+<p>Now the setup process is complete and you should have the shell prompt back. The last part of the setup process, client setup, has created a file <code>&lt;mychromebook&gt;.ovpn</code> in your home directory on the Raspberry Pi. In order to be a bit more organized I like to create a separate directory where I keep all OpenVPN client files:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">export</span> MYCHROMEBOOK=&lt;mychromebook&gt;</span><br><span class="line">mkdir -p ~/vpn</span><br><span class="line">mv ~/<span class="variable">$MYCHROMEBOOK</span>.ovpn ~/vpn/</span><br></pre></td></tr></table></figure>
 <p>In order to add more clients later just rerun <code>sudo ./openvpn-install.sh</code> and choose the option <em>Add a new user</em> which will ask you for the next client name.</p>
-<p>If the client configuration is for another type of client instead of a ChromeBook, it is quite likely that it could import the *.ovpn file directly. E.g. the <a href="https://tunnelblick.net/" target="_blank" rel="noopener">Tunnelblick client</a> for MacOSX or the <a href="https://play.google.com/store/apps/details?id=net.openvpn.openvpn" target="_blank" rel="noopener">OpenVPN Connect client</a> for Android can both directly import *.ovpn files to configure the connection to an OpenVPN server.</p>
+<p>If the client configuration is for another type of client instead of a ChromeBook, it is quite likely that it could import the *.ovpn file directly. E.g. the <a target="_blank" rel="noopener" href="https://tunnelblick.net/">Tunnelblick client</a> for MacOSX or the <a target="_blank" rel="noopener" href="https://play.google.com/store/apps/details?id=net.openvpn.openvpn">OpenVPN Connect client</a> for Android can both directly import *.ovpn files to configure the connection to an OpenVPN server.</p>
 <h2 id="Router-Configuration"><a href="#Router-Configuration" class="headerlink" title="Router Configuration"></a>Router Configuration</h2><p>The Raspberry Pi in your home is typically behind some router which is the interface between the outside world and your home network. When you’re out and about, your OpenVPN client machine is on one side of that router whereas your OpenVPN server machine, the Raspberry Pi, is on the other side of that router.</p>
 <p>What you need to do is go to your router’s configuration page and allow the OpenVPN traffic to pass through. We’ve set up OpenVPN to use <strong>UDP port 1194</strong>, so find the appropriate router settings, add that port to the allowed traffic, and have the router send it to your Raspberry Pi’s internal IP address on your home network.</p>
 <p>Since all routers are different I can’t give detailed instructions on how to do that on your router. If you can’t figure it out by yourself, there should be plenty of instructions floating around the internet that show how to do that for your particular router.</p>
 <h2 id="ChromeBook-Setup"><a href="#ChromeBook-Setup" class="headerlink" title="ChromeBook Setup"></a>ChromeBook Setup</h2><p>Now for the last part, setting up the OpenVPN client on the ChromeBook. Unfortunately ChromeBooks can’t import *.ovpn files directly. Also, their GUI for setting up VPN connections is extremely restrictive, not allowing access to most of the settings we need. ChromeBooks do, however, understand a different type of VPN configuration file called *.onc file. But they’re very picky about this file and give you little help figuring out what the problem is if something goes wrong. What we need to do is convert the *.ovpn file to a *.onc file and import that on the ChromeBook.</p>
-<p>To do that, first download the <code>onc_converter.py</code>:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">curl -O https://gist.githubusercontent.com/ArturKlauser/ed5af568ed9ccf9be1c0a1ffb833587d/raw/a33f0ac031d44a4dd0f5a8b168308e1be885045d/onc_converter.py</span><br><span class="line">chmod 755 onc_converter.py</span><br></pre></td></tr></table></figure></p>
-<p>And then run it on the .ovpn file you generated earlier:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./onc_converter.py --infile vpn/$MYCHROMEBOOK.ovpn --name &quot;user-friendly VPN name&quot; --outfile vpn/$MYCHROMEBOOK.onc</span><br></pre></td></tr></table></figure></p>
+<p>To do that, first download the <code>onc_converter.py</code>:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">curl -O https://gist.githubusercontent.com/ArturKlauser/ed5af568ed9ccf9be1c0a1ffb833587d/raw/a33f0ac031d44a4dd0f5a8b168308e1be885045d/onc_converter.py</span><br><span class="line">chmod 755 onc_converter.py</span><br></pre></td></tr></table></figure>
+<p>And then run it on the .ovpn file you generated earlier:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./onc_converter.py --infile vpn/$MYCHROMEBOOK.ovpn --name &quot;user-friendly VPN name&quot; --outfile vpn/$MYCHROMEBOOK.onc</span><br></pre></td></tr></table></figure>
 <p>The <em>user-friendly VPN name</em> is the name by which the VPN connection will show up on your ChromeBook later.</p>
 <p>Now copy the <code>vpn/$MYCHROMEBOOK.onc</code> file to your ChromeBook, e.g. via USB stick, and import it:</p>
 <ul>
@@ -250,7 +298,7 @@ ga('send', 'pageview');
 <li>Click on ‘Authorities’.</li>
 <li>Find your CA name, which is of the form org-cn_* and click ‘…’ -&gt; ‘Edit’.</li>
 <li>Check ‘Trust this certificate for identifying websites’ and click OK.</li>
-<li>In a new browser window/tab, type: <code>chrome://settings/networks?type=VPN</code></li>
+<li>In a new browser window/tab, type: <code>chrome://settings/networks?type=VPN</code></li>
 <li>Verify that you have a ‘VPN’ entry in the ‘Network’ section with the <em>user-friendly VPN name</em> you set earlier in the .ovpn to .onc conversion process.</li>
 <li>Attempt to connect.</li>
 <li>The first time you will be prompted for a password which isn’t actually used for anything (same as the user name) but you must fill in something arbitrary, i.e. you can’t leave it blank.</li>
@@ -259,11 +307,11 @@ ga('send', 'pageview');
 <p>That’s it, your ChromeBook should be connected to the OpenVPN server running on the Raspberry Pi in your home network. You can see that by the little key symbol next to the network/wifi symbol.</p>
 <h2 id="References"><a href="#References" class="headerlink" title="References"></a>References</h2><p>This article is partially based on information found in the following references: </p>
 <ul>
-<li><a href="https://gist.github.com/pkutzner/47a2d6f7c4a7df75b2172c68c972841a" target="_blank" rel="noopener">Creating an OpenVPN Configuration for ChromeOS</a></li>
-<li><a href="https://docs.google.com/document/d/18TU22gueH5OKYHZVJ5nXuqHnk2GN6nDvfu2Hbrb4YLE/pub" target="_blank" rel="noopener">OpenVPN on ChromeOS</a></li>
-<li><a href="https://chromium.googlesource.com/chromium/src/+/master/components/onc/docs/onc_spec.md" target="_blank" rel="noopener">Open Network Configuration</a></li>
-<li><a href="https://github.com/angristan/openvpn-install/blob/master/README.md" target="_blank" rel="noopener">openvpn-install</a></li>
-<li><a href="https://www.freecodecamp.org/news/running-your-own-openvpn-server-on-a-raspberry-pi-8b78043ccdea/" target="_blank" rel="noopener">How to run your own OpenVPN server on a Raspberry PI</a></li>
+<li><a target="_blank" rel="noopener" href="https://gist.github.com/pkutzner/47a2d6f7c4a7df75b2172c68c972841a">Creating an OpenVPN Configuration for ChromeOS</a></li>
+<li><a target="_blank" rel="noopener" href="https://docs.google.com/document/d/18TU22gueH5OKYHZVJ5nXuqHnk2GN6nDvfu2Hbrb4YLE/pub">OpenVPN on ChromeOS</a></li>
+<li><a target="_blank" rel="noopener" href="https://chromium.googlesource.com/chromium/src/+/master/components/onc/docs/onc_spec.md">Open Network Configuration</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/angristan/openvpn-install/blob/master/README.md">openvpn-install</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.freecodecamp.org/news/running-your-own-openvpn-server-on-a-raspberry-pi-8b78043ccdea/">How to run your own OpenVPN server on a Raspberry PI</a></li>
 </ul>
 
         </div>
@@ -272,7 +320,7 @@ ga('send', 'pageview');
 
 
     <div class="a2a_kit a2a_default_style">
-    <a class="a2a_dd" href="https://www.addtoany.com/share">Share</a>
+    <a class="a2a_dd" target="_blank" rel="noopener" href="https://www.addtoany.com/share">Share</a>
     <span class="a2a_divider"></span>
     <a class="a2a_button_facebook"></a>
     <a class="a2a_button_twitter"></a>
@@ -344,8 +392,9 @@ ga('send', 'pageview');
         "dateModified": "2020-02-06",
         "url": "https://nexus.eddiesinentropy.net/2020/02/04/Raspberry-Pi-OpenVPN-Server-for-ChromeBooks/",
         "description": " 
+
 How to connect a ChromeBook client to an OpenVPN server running on Raspberry Pi.",
-        "wordCount": 2425
+        "wordCount": 2391
     }
 </script>
 
@@ -355,8 +404,9 @@ How to connect a ChromeBook client to an OpenVPN server running on Raspberry Pi.
     
         
     <div id="disqus_thread">
-        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        <noscript>Please enable JavaScript to view the <a target="_blank" rel="noopener" href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
     </div>
+
 
     
     </section>
@@ -401,7 +451,7 @@ How to connect a ChromeBook client to an OpenVPN server running on Raspberry Pi.
     <div class="widget-wrap">
         <h3 class="widget-title">recents</h3>
         <div class="widget">
-            <ul id="recent-post" class>
+            <ul id="recent-post" class="">
                 
                     <li>
                         
@@ -472,7 +522,7 @@ How to connect a ChromeBook client to an OpenVPN server running on Raspberry Pi.
     <div class="widget-wrap widget-list">
         <h3 class="widget-title">tags</h3>
         <div class="widget">
-            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/ChromeBook/">ChromeBook</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Docker/">Docker</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Raspberry-Pi/">Raspberry Pi</a><span class="tag-list-count">2</span></li></ul>
+            <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/ChromeBook/" rel="tag">ChromeBook</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Docker/" rel="tag">Docker</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Raspberry-Pi/" rel="tag">Raspberry Pi</a><span class="tag-list-count">2</span></li></ul>
         </div>
     </div>
 
@@ -504,8 +554,10 @@ How to connect a ChromeBook client to an OpenVPN server running on Raspberry Pi.
             <a id="back-to-top" href="javascript:;"><i class="icon fa fa-angle-up"></i></a>
             <div class="credit">
               
-                <p>&copy; 2020 Artur Klauser</p>
-                <p>Powered by <a href="//hexo.io/" target="_blank">Hexo</a>. Frankentheme landscape &amp; hueman.</p>
+                <p>&copy; 2021 Artur Klauser</p>
+                
+                <p>Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>. Frankentheme landscape &amp; hueman.</p>
+                
             </div>
             <div class="footer-plugins">
               
@@ -517,7 +569,8 @@ How to connect a ChromeBook client to an OpenVPN server running on Raspberry Pi.
     </div>
 </footer>
 
-        
+    </div>
+    
     
     <script>
     var disqus_shortname = 'eddiesinentropy';
@@ -537,27 +590,53 @@ How to connect a ChromeBook client to an OpenVPN server running on Raspberry Pi.
 
 
 
+
     
-        <script src="/libs/lightgallery/js/lightgallery.min.js"></script>
-        <script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
-        <script src="/libs/lightgallery/js/lg-pager.min.js"></script>
-        <script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
-        <script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
-        <script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
-        <script src="/libs/lightgallery/js/lg-hash.min.js"></script>
-        <script src="/libs/lightgallery/js/lg-share.min.js"></script>
-        <script src="/libs/lightgallery/js/lg-video.min.js"></script>
+        
+<script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-hash.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-share.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-video.min.js"></script>
+
     
     
-        <script src="/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
+        
+<script src="/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
+
+    
+    
+
+    
     
     
 
 
 
 <!-- Custom Scripts -->
+
 <script src="/js/main.js"></script>
 
-    </div>
+
 </body>
 </html>
