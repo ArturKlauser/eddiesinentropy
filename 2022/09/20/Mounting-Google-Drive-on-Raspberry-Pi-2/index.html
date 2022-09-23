@@ -21,7 +21,7 @@
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://nexus.eddiesinentropy.net/2022/09/20/Mounting-Google-Drive-on-Raspberry-Pi-2/RPi-GDrive.png">
 <meta property="article:published_time" content="2022-09-20T21:09:00.000Z">
-<meta property="article:modified_time" content="2022-09-23T02:46:33.115Z">
+<meta property="article:modified_time" content="2022-09-23T16:03:26.852Z">
 <meta property="article:author" content="Artur Klauser">
 <meta property="article:tag" content="Raspberry Pi">
 <meta name="twitter:card" content="summary">
@@ -151,7 +151,7 @@
 <div class="article-date">
   <i class="fa fa-calendar-plus-o"></i>
   <a href="/2022/09/20/Mounting-Google-Drive-on-Raspberry-Pi-2/" class="article-date">
-     <time datetime="2022-09-23T02:46:33.115Z" itemprop="dateModified">2022-09-22</time>
+     <time datetime="2022-09-23T16:03:26.852Z" itemprop="dateModified">2022-09-23</time>
   </a>
 </div>
 
@@ -240,7 +240,7 @@ Copy the <em>client ID</em> and <em>client secret</em> since we’ll need it for
 </ul>
 </li>
 </ul>
-<h3 id="Setting-up-the-Rclone-Configuration"><a href="#Setting-up-the-Rclone-Configuration" class="headerlink" title="Setting up the Rclone Configuration"></a>Setting up the Rclone Configuration</h3><p>Back on the Raspberry Pi log in as the Linux user who should be able to access the Google Drive files and run:</p>
+<h3 id="Setting-up-the-Rclone-Configuration"><a href="#Setting-up-the-Rclone-Configuration" class="headerlink" title="Setting up the Rclone Configuration"></a>Setting up the Rclone Configuration</h3><p>Back on the Raspberry Pi, log in as the Linux user who should be able to access the Google Drive files and run:</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rclone config</span><br></pre></td></tr></table></figure>
 <p>Select the following answers:</p>
 <pre>
@@ -256,7 +256,7 @@ Enter a string value. Press Enter for the default ("").
 Choose a number from below, or type in your own value
 <i>... snip ...</i>
 18 / Google Drive
-   \ (drive)  
+   \ (drive)
 <i>... snip ...</i>
 Storage> <b>18</b><br>
 Option client_id.
@@ -305,7 +305,6 @@ y) Yes (default)
 n) No
 y/n> <b>y</b><br>
 </pre>
-
 <p>Google no longer offers the <a target="_blank" rel="noopener" href="https://developers.google.com/identity/protocols/oauth2/native-app#manual-copypaste">out-of-band (OOB)</a> method of configuring a client, which used to be the most convenient option for this situation. A good overview can also be found in the <a target="_blank" rel="noopener" href="https://rclone.org/remote_setup/">rclone documentation</a>. You have several options here now:</p>
 <ul>
 <li>1a) If you are working on your Raspberry Pi in the GUI, you’re all set. Select <strong>Yes</strong> (autoconfig) and just follow the prompts.</li>
@@ -379,9 +378,9 @@ e/n/d/r/c/s/q> <b>q</b>
 <p>In a second terminal on your Raspberry Pi run:</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ls -l ~/mnt/gdrive</span><br></pre></td></tr></table></figure>
 <p>This should again list all files in the top-level directory of your Google Drive. Since your cloud storage is now part of the regular file system, any program on you Pi can access it just like any other file. After this test stop the above rclone command in the first terminal with Ctrl-C.</p>
-<h2 id="Automatically-Mounting-Google-Drive"><a href="#Automatically-Mounting-Google-Drive" class="headerlink" title="Automatically Mounting Google Drive"></a>Automatically Mounting Google Drive</h2><p>The setup above is all that is necessary to use the <code>rclone mount</code> command and mount Google Drive by hand into your file system whenever you need it. However, that is a bit cumbersome. It would be better if Google drive were mounted automatically whenever the corresponding user logs in. This can be achieved with <a target="_blank" rel="noopener" href="https://github.com/systemd/systemd">systemd</a>, a daemon that starts and stops services when needed. Systemd operates in one of two modes, a <em>–system</em> mode that handles machine-wide services such as bringing up networking, and a <em>–user</em> mode that deals with per-user services such as starting the desktop environment and in our case we want it to mount the rclone FUSE file system for Google Drive. A good place to learn more is the archlinux wiki for <a target="_blank" rel="noopener" href="https://wiki.archlinux.org/index.php/Systemd/User">per-user systemd</a>.</p>
+<h2 id="Automatically-Mounting-Google-Drive"><a href="#Automatically-Mounting-Google-Drive" class="headerlink" title="Automatically Mounting Google Drive"></a>Automatically Mounting Google Drive</h2><p>The setup above is all that is necessary to use the <code>rclone mount</code> command and mount Google Drive by hand into your file system whenever you need it. However, that is a bit cumbersome. It would be better if Google drive were mounted automatically whenever the corresponding user logs in. This can be achieved with <a target="_blank" rel="noopener" href="https://github.com/systemd/systemd">systemd</a>, a daemon that starts and stops services when needed. Systemd operates in one of two modes, a <code>--system</code> mode that handles machine-wide services such as bringing up networking, and a <code>--user</code> mode that deals with per-user services such as starting the desktop environment and in our case we want it to mount the rclone FUSE file system for Google Drive. A good place to learn more is the archlinux wiki for <a target="_blank" rel="noopener" href="https://wiki.archlinux.org/index.php/Systemd/User">per-user systemd</a>.</p>
 <h3 id="Configuring-Systemd"><a href="#Configuring-Systemd" class="headerlink" title="Configuring Systemd"></a>Configuring Systemd</h3><p>To tell systemd what to do it depends on configuration files in some standard locations. One of these locations where systemd looks for <em>user</em> config files is <code>$HOME/.config/systemd/user</code>. To have the rclone FUSE file system mounted automatically at login, create a <code>~/.config/systemd/user/rclone@.service</code> file with the following contents:</p>
-<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">[Unit]</span></span><br><span class="line"><span class="attr">Description</span>=rclone: Remote FUSE filesystem for cloud storage config %i</span><br><span class="line"><span class="attr">Documentation</span>=man:rclone(<span class="number">1</span>)</span><br><span class="line"></span><br><span class="line"><span class="section">[Service]</span></span><br><span class="line"><span class="attr">Type</span>=notify</span><br><span class="line"><span class="attr">ExecStartPre</span>=/bin/mkdir -p %h/mnt/%i</span><br><span class="line"><span class="attr">ExecStart</span>= \</span><br><span class="line">  /usr/bin/rclone mount \</span><br><span class="line">    --vfs-cache-mode writes \</span><br><span class="line">    --vfs-cache-max-size 100M  \</span><br><span class="line">    %i: %h/mnt/%i</span><br><span class="line"></span><br><span class="line"><span class="section">[Install]</span></span><br><span class="line"><span class="attr">WantedBy</span>=default.target</span><br></pre></td></tr></table></figure>
+<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">[Unit]</span></span><br><span class="line"><span class="attr">Description</span>=rclone: Remote FUSE filesystem for cloud storage config %i</span><br><span class="line"><span class="attr">Documentation</span>=man:rclone(<span class="number">1</span>)</span><br><span class="line"></span><br><span class="line"><span class="section">[Service]</span></span><br><span class="line"><span class="attr">Type</span>=notify</span><br><span class="line"><span class="attr">ExecStartPre</span>=/bin/mkdir -p %h/mnt/%i</span><br><span class="line"><span class="attr">ExecStart</span>= \</span><br><span class="line">  /usr/bin/rclone mount \</span><br><span class="line">    --vfs-cache-mode writes \</span><br><span class="line">    --vfs-cache-max-size 100M \</span><br><span class="line">    %i: %h/mnt/%i</span><br><span class="line"></span><br><span class="line"><span class="section">[Install]</span></span><br><span class="line"><span class="attr">WantedBy</span>=default.target</span><br></pre></td></tr></table></figure>
 
 <blockquote>
 <p>Note: If you’re using rclone version &lt; 1.46, remove the <code>--vfs-cache-max-size</code> line, as that flag is not yet supported in earlier versions.</p>
@@ -478,12 +477,12 @@ e/n/d/r/c/s/q> <b>q</b>
         "genre": "",
         "datePublished": "2022-09-20",
         "dateCreated": "2022-09-20",
-        "dateModified": "2022-09-22",
+        "dateModified": "2022-09-23",
         "url": "https://nexus.eddiesinentropy.net/2022/09/20/Mounting-Google-Drive-on-Raspberry-Pi-2/",
         "description": "
 
 How to use rclone, FUSE, and systemd to automatically mount your Google Drive on your Raspberry Pi.",
-        "wordCount": 2870
+        "wordCount": 2867
     }
 </script>
 
