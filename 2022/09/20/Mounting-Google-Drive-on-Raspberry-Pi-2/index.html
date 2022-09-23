@@ -6,7 +6,7 @@
     
 
     
-    <title>Mounting Google Drive on Raspberry Pi - 2019 Version | Eddies in Entropy</title>
+    <title>Mounting Google Drive on Raspberry Pi | Eddies in Entropy</title>
     
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     
@@ -14,18 +14,18 @@
     
     <meta name="description" content="How to use rclone, FUSE, and systemd to automatically mount your Google Drive on your Raspberry Pi.">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Mounting Google Drive on Raspberry Pi - 2019 Version">
-<meta property="og:url" content="https://nexus.eddiesinentropy.net/2019/04/21/Mounting-Google-Drive-on-Raspberry-Pi/">
+<meta property="og:title" content="Mounting Google Drive on Raspberry Pi">
+<meta property="og:url" content="https://nexus.eddiesinentropy.net/2022/09/20/Mounting-Google-Drive-on-Raspberry-Pi-2/">
 <meta property="og:site_name" content="Eddies in Entropy">
 <meta property="og:description" content="How to use rclone, FUSE, and systemd to automatically mount your Google Drive on your Raspberry Pi.">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://nexus.eddiesinentropy.net/2019/04/21/Mounting-Google-Drive-on-Raspberry-Pi/RPi-GDrive.png">
-<meta property="article:published_time" content="2019-04-21T16:22:00.000Z">
-<meta property="article:modified_time" content="2022-09-23T02:48:07.650Z">
+<meta property="og:image" content="https://nexus.eddiesinentropy.net/2022/09/20/Mounting-Google-Drive-on-Raspberry-Pi-2/RPi-GDrive.png">
+<meta property="article:published_time" content="2022-09-20T21:09:00.000Z">
+<meta property="article:modified_time" content="2022-09-23T02:46:33.115Z">
 <meta property="article:author" content="Artur Klauser">
 <meta property="article:tag" content="Raspberry Pi">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://nexus.eddiesinentropy.net/2019/04/21/Mounting-Google-Drive-on-Raspberry-Pi/RPi-GDrive.png">
+<meta name="twitter:image" content="https://nexus.eddiesinentropy.net/2022/09/20/Mounting-Google-Drive-on-Raspberry-Pi-2/RPi-GDrive.png">
     
 
     
@@ -124,14 +124,14 @@
 </div>
 
                         <div class="main-body-content">
-                            <article id="post-Mounting-Google-Drive-on-Raspberry-Pi" class="article article-single article-type-post" itemscope itemprop="blogPost">
+                            <article id="post-Mounting-Google-Drive-on-Raspberry-Pi-2" class="article article-single article-type-post" itemscope itemprop="blogPost">
     <div class="article-inner">
         
             <header class="article-header">
                 
     
         <h1 class="article-title" itemprop="name">
-        Mounting Google Drive on Raspberry Pi - 2019 Version
+        Mounting Google Drive on Raspberry Pi
         </h1>
     
 
@@ -142,16 +142,16 @@
                 
   <div class="article-date">
     <i class="fa fa-calendar"></i>
-    <a href="/2019/04/21/Mounting-Google-Drive-on-Raspberry-Pi/" class="article-date">
-       <time datetime="2019-04-21T16:22:00.000Z" itemprop="datePublished">2019-04-21</time>
+    <a href="/2022/09/20/Mounting-Google-Drive-on-Raspberry-Pi-2/" class="article-date">
+       <time datetime="2022-09-20T21:09:00.000Z" itemprop="datePublished">2022-09-20</time>
     </a>
   </div>
 
 
 <div class="article-date">
   <i class="fa fa-calendar-plus-o"></i>
-  <a href="/2019/04/21/Mounting-Google-Drive-on-Raspberry-Pi/" class="article-date">
-     <time datetime="2022-09-23T02:48:07.650Z" itemprop="dateModified">2022-09-22</time>
+  <a href="/2022/09/20/Mounting-Google-Drive-on-Raspberry-Pi-2/" class="article-date">
+     <time datetime="2022-09-23T02:46:33.115Z" itemprop="dateModified">2022-09-22</time>
   </a>
 </div>
 
@@ -178,152 +178,182 @@
 
             
 
-            <img src="/2019/04/21/Mounting-Google-Drive-on-Raspberry-Pi/RPi-GDrive.png" class="" title="Raspberry Pi connected to Google Drive">
+            <img src="/2022/09/20/Mounting-Google-Drive-on-Raspberry-Pi-2/RPi-GDrive.png" class="" title="Raspberry Pi connected to Google Drive">
 
 <p>How to use rclone, FUSE, and systemd to automatically mount your Google Drive on your Raspberry Pi.</p>
 <span id="more"></span>
 
-<hr>
-<p><strong>Note: There is an <a href="../../../../2022/09/20/Mounting-Google-Drive-on-Raspberry-Pi-2/">updated version</a> of this article available.</strong></p>
-<p>Below is the original version from Spring 2019.</p>
-<hr>
+<p>I wrote the <a href="../../../../2019/04/21/Mounting-Google-Drive-on-Raspberry-Pi/">first version of this article</a> in the Spring of 2019. In the meantime the world has moved on, so I figured it’s time for an update of these instructions to incorporate recent changes.</p>
 <p>The <a target="_blank" rel="noopener" href="https://www.raspberrypi.org/">Raspberry Pi</a> is a great little device to run a variety of services in your home network. It saves files on a user-provided SD card or USB stick. But what if you want to store files off-device to safeguard the work that you’ve put in to set up whatever services you’re running on your Pi? What if you would like to share files between multiple Pis? Or what if you have files like your photos living in the cloud already and you’d like to easily access them from your Pi? This article shows how you can connect your Google Drive to your Raspberry Pi for all the above use cases and more.</p>
 <h2 id="Which-Software-to-Use"><a href="#Which-Software-to-Use" class="headerlink" title="Which Software to Use?"></a>Which Software to Use?</h2><p>The first thing we have to decide is which software to use. When you look around for software to connect Google Drive to a Linux environment you run into projects with a wide range of different features and requirements. Some are better maintained than others. The one I’ve chosen here is <a target="_blank" rel="noopener" href="https://rclone.org/">rclone</a>, which is actively maintained and provides a lot of functionality. In particular, with the help of the <a target="_blank" rel="noopener" href="https://github.com/libfuse/libfuse">FUSE</a> userspace filesystem layer, it allows you to mount Google Drive as part of your Linux file system, which greatly simplifies using the cloud storage from your Pi. These instructions will probably also work on most other Debian Linux based distributions with little or no change.</p>
-<p>Rclone is much more versatile than the limited usage described in this article. It doesn’t only support Google Drive but a whole host of other cloud storage providers as well, such as Amazon Drive, Dropbox, or Microsoft OneDrive to name just a few of the larger ones. Besides allowing you to mount one of those cloud storage services into your file system, it also provides a set of CLI commands to directly manipulate files on those services. In this article, however, we won’t use them and concentrate on using <code>rclone mount</code>. </p>
+<p>Rclone is much more versatile than the limited usage described in this article. It doesn’t only support Google Drive but a <a target="_blank" rel="noopener" href="https://rclone.org/#providers">whole host of other cloud storage providers</a> as well, such as Amazon Drive, Dropbox, or Microsoft OneDrive to name just a few of the larger ones. Besides allowing you to <a target="_blank" rel="noopener" href="https://rclone.org/commands/rclone_mount/">mount</a> one of those cloud storage services into your file system, it also provides a set of CLI commands to directly manipulate files on those services. In this article, however, we won’t use them and concentrate on using <code>rclone mount</code>. </p>
 <p>The installation instructions below assume that you’re logged in to your Raspberry Pi and execute all instructions there, unless otherwise noted.</p>
 <h2 id="Installing-Rclone-on-Raspbian"><a href="#Installing-Rclone-on-Raspbian" class="headerlink" title="Installing Rclone on Raspbian"></a>Installing Rclone on Raspbian</h2><p>The easiest way to install rclone is to use the pre-compiled Debian package:</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install rclone</span><br></pre></td></tr></table></figure>
-<p>As of this writing, the current release of Raspbian is based on Debian v.9 (Stretch), and the version of rclone we get via apt-get is 1.35. However, rclone has progressed to version 1.47 in the meantime. To get a more up-to-date version, instead of using the apt package that comes with the default Raspbian package repositories, we’re going to install an up-to-date rclone package from its <a target="_blank" rel="noopener" href="https://rclone.org/downloads/">download</a> page:</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> /tmp</span><br><span class="line">wget https://downloads.rclone.org/v1.47.0/rclone-v1.47.0-linux-arm.deb</span><br><span class="line">sudo apt install ./rclone-v1.47.0-linux-arm.deb</span><br><span class="line">rm rclone-v1.47.0-linux-arm.deb</span><br></pre></td></tr></table></figure>
+<p>As of this writing, the current release of Raspberry Pi OS (aka. Raspbian) is based on Debian v.11 (Bullseye). I’m writing this for a plain install of the 32-bit Raspberry Pi OS with desktop. If you have installed a different version, you will potentially have to adapt software to install, e.g. use the 64-bit versions if you are running a 64-bit OS. The version of rclone we get via apt-get is 1.53.3. However, rclone has progressed to version 1.59.2 in the meantime. To get a more up-to-date version, instead of using the apt package that comes with the default Raspberry Pi OS package repositories, we’re going to install an up-to-date rclone package from its <a target="_blank" rel="noopener" href="https://rclone.org/downloads/">download</a> page:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> /tmp</span><br><span class="line">wget https://downloads.rclone.org/v1.59.2/rclone-v1.59.2-linux-arm-v7.deb</span><br><span class="line">sudo apt install ./rclone-v1.59.2-linux-arm-v7.deb</span><br><span class="line">rm rclone-v1.59.2-linux-arm-v7.deb</span><br></pre></td></tr></table></figure>
 
 <h2 id="Configuring-Rclone"><a href="#Configuring-Rclone" class="headerlink" title="Configuring Rclone"></a>Configuring Rclone</h2><p>Since the remote files we’re going to access are private to a particular user, rclone keeps configuration files separate per user. All secret access tokens necessary to interact with the cloud storage are stored in a user’s config file such that different users can’t access each other’s cloud storage. By default the config file is located in <code>$HOME/.config/rclone/rclone.conf</code> and should have permissions of 0600 (read-write only for file owner) to make sure your access tokens remain private.</p>
 <p>For Google Drive there is another consideration. If you go with the default configuration, you’re using the <em>client_id</em> that corresponds to the rclone application. Google imposes per-client rate limits on interactions with Google Drive. This means that by using the rclone default <em>client_id</em> you’re competing against all other users of rclone, globally, for operation bandwidth to Google Drive. Even though the rclone authors try to mitigate this by asking Google for higher quotas, using the default is not an ideal situation. For this reason we’ll set up our own <em>client_id</em> with Google and avoid the stampede.</p>
 <h3 id="Getting-a-Google-Drive-Client-ID"><a href="#Getting-a-Google-Drive-Client-ID" class="headerlink" title="Getting a Google Drive Client ID"></a>Getting a Google Drive Client ID</h3><p>In a browser go to the <a target="_blank" rel="noopener" href="https://console.developers.google.com/">Google Developer Console</a> and log in with your Google account. You don’t have to do this on your Raspberry Pi. Any computer is fine.</p>
 <ul>
-<li>On the top go to <strong>Select a project → New Project</strong><ul>
+<li>On the top bar go to <strong>Project list (Select a project) → New Project</strong><ul>
 <li>Fill in a Project Name: <em><strong>my-rclone-gdrive-access</strong></em></li>
 <li>Hit <strong>Create</strong></li>
 </ul>
 </li>
-<li>Just below the top select <strong>+ ENABLE APIS AND SERVICES</strong><ul>
-<li>Search for <strong>Drive</strong></li>
+<li>Go back to the <strong>Project list (Select a project)</strong> and select the <em><strong>my-rclone-gdrive-access</strong></em> project.</li>
+<li>On the left side-panel select <strong>Enable APIs &amp; services</strong></li>
+<li>On the top select <strong>+ ENABLE APIS AND SERVICES</strong><ul>
+<li>In the search box search for <strong>Drive</strong></li>
 <li>Select <strong>Google Drive API</strong></li>
 <li>Hit <strong>Enable</strong></li>
 </ul>
 </li>
-<li>On the left side-panel select <strong>Credentials</strong><ul>
-<li>In the main panel you’ll get a warning about<blockquote>
-<p>Remember to configure the OAuth consent screen with information about your application.</p>
-</blockquote>
-</li>
-<li>Next to the warning select <strong>CONFIGURE CONSENT SCREEN</strong></li>
-<li>Fill in the Application Name: <em><strong>my-rclone</strong></em></li>
-<li>Hit <strong>Add Scope</strong><ul>
-<li>Pick <strong>../auth/drive</strong> (which can “see, edit, create, and delete all of your Google Drive files”) and hit <strong>Add</strong></li>
-</ul>
-</li>
-<li>Hit <strong>Save</strong></li>
-</ul>
-</li>
-<li>Go back to <strong>Credentials</strong> on the left side-panel and then <strong>Credentials</strong> on the top menu inside the main panel<ul>
-<li>Select <strong>Create credentials → OAuth client ID</strong></li>
-<li>Select Application type: <strong>Other</strong> and set some sensible name: <em><strong>my rclone client</strong></em></li>
+<li>On the left side-panel select <strong>OAuth consent screen</strong><ul>
+<li>Select User Type: <strong>External</strong></li>
 <li>Hit <strong>Create</strong></li>
-<li>You’ll get a confirmation page containing the <em>client ID</em> and <em>client secret</em> which looks like this.<img src="/2019/04/21/Mounting-Google-Drive-on-Raspberry-Pi/client_id.png" class="" title="Client ID confirmation page">
+<li>Fill in the App Name: <em><strong>my-rclone</strong></em></li>
+<li>Fill in the Support Email: <em><strong>&lt;your-gmail-address&gt;</strong></em></li>
+<li>Fill in Developer contact information: Email: <em><strong>&lt;your-gmail-address&gt;</strong></em></li>
+<li>Leave all the other fields as default on this screen</li>
+<li>Hit <strong>SAVE AND CONTINUE</strong></li>
+<li>Hit <strong>ADD OR REMOVE SCOPES</strong></li>
+<li>Pick <strong>Google Drive API, ../auth/drive</strong> (which can “see, edit, create, and delete all of your Google Drive files”)</li>
+<li>Hit <strong>UPDATE</strong></li>
+<li>Hit <strong>SAVE AND CONTINUE</strong></li>
+<li>Hit Test users: <strong>+ ADD USERS</strong></li>
+<li>Fill in your gmail user (or any other Google user ID you’d like to use to access your Drive files with)</li>
+<li>Hit <strong>ADD</strong> (twice)</li>
+<li>The user you just filled in should show up in the list under <strong>User information</strong> now</li>
+<li>Hit <strong>SAVE AND CONTINUE</strong></li>
+</ul>
+</li>
+<li>Hit <strong>Credentials</strong> on the left side-panel<ul>
+<li>Select <strong>+ CREATE CREDENTIALS</strong> on the top menu inside the main panel</li>
+<li>Select <strong>OAuth client ID</strong></li>
+<li>Select Application type: <strong>Desktop</strong></li>
+<li>Set some sensible name: <em><strong>my rclone client</strong></em></li>
+<li>Hit <strong>CREATE</strong></li>
+<li>You’ll get a confirmation popup <strong>OAuth client created</strong> containing the <em>client ID</em> and <em>client secret</em> which looks like this.<img src="/2022/09/20/Mounting-Google-Drive-on-Raspberry-Pi-2/client_id.png" class="" title="Client ID confirmation page">
 Copy the <em>client ID</em> and <em>client secret</em> since we’ll need it for the rclone configuration.</li>
 </ul>
 </li>
 </ul>
-<h3 id="Setting-up-the-Rclone-Configuration"><a href="#Setting-up-the-Rclone-Configuration" class="headerlink" title="Setting up the Rclone Configuration"></a>Setting up the Rclone Configuration</h3><p>Back on the Raspberry Pi log in as the user who should be able to access the Google Drive files and run:</p>
+<h3 id="Setting-up-the-Rclone-Configuration"><a href="#Setting-up-the-Rclone-Configuration" class="headerlink" title="Setting up the Rclone Configuration"></a>Setting up the Rclone Configuration</h3><p>Back on the Raspberry Pi log in as the Linux user who should be able to access the Google Drive files and run:</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rclone config</span><br></pre></td></tr></table></figure>
 <p>Select the following answers:</p>
 <pre>
-No remotes found - make a new one
+No remotes found - make a new one?
 n) New remote
 s) Set configuration password
 q) Quit config
 n/s/q> <b>n</b>
+Enter name for new remote.
 name> <b>gdrive</b><br>
 Type of storage to configure.
 Enter a string value. Press Enter for the default ("").
 Choose a number from below, or type in your own value
 <i>... snip ...</i>
-12 / Google Drive
-   \ "drive"
+18 / Google Drive
+   \ (drive)  
 <i>... snip ...</i>
-Storage> <b>12</b>
-See help for drive backend at https://rclone.org/drive/<br>
+Storage> <b>18</b><br>
+Option client_id.
 Google Application Client Id
 Setting your own is recommended.
 See https://rclone.org/drive/#making-your-own-client-id for how to create your own.
 If you leave this blank, it will use an internal key which is low performance.
-Enter a string value. Press Enter for the default ("").
-client_id> <b>425159802070-tup27t8cv4h2z3cjkqfmft4n8gju76lf.apps.googleusercontent.com</b>
+Enter a value. Press Enter to leave empty.
+client_id> <b>103XXXXXXXXXXXXXXXXXuso.apps.googleusercontent.com</b>
 </pre>
 
-<p>This is the <em>client ID</em> that you saved in the previous step.</p>
+<p>This is the <em>client ID</em> that you saved in the earlier step. If you forgot to save it, you can always find it by going to <strong>Credentials → OAuth 2.0 Client IDs → &lt;name-of-your-id&gt;</strong> and the information will be presented to you again.</p>
 <pre>
-Google Application Client Secret
-Setting your own is recommended.
-Enter a string value. Press Enter for the default ("").
-client_secret> <b>MspFTowlsy0SUSRm-1RvcTyx</b>
+Option client_secret.
+OAuth Client Secret.
+Leave blank normally.
+Enter a value. Press Enter to leave empty.
+client_secret> <b>GOCXXXXXXXXXXXXXXXXXyXc</b>
 </pre>
 
-<p>This is the <em>client secret</em> that you saved in the previous step.</p>
+<p>This is the <em>client secret</em> that you saved in the earlier step.</p>
 <pre>
+Option scope.
 Scope that rclone should use when requesting access from drive.
-Enter a string value. Press Enter for the default ("").
-Choose a number from below, or type in your own value
+Choose a number from below, or type in your own value.
+Press Enter to leave empty.
 1 / Full access all files, excluding Application Data Folder.
-  \ "drive"
+  \ (drive)
 <i>... snip ...</i>
 scope> <b>1</b><br>
-ID of the root folder
-Leave blank normally.
-Fill in to access "Computers" folders. (see docs).
-Enter a string value. Press Enter for the default ("").
-root_folder_id><br>
-Service Account Credentials JSON file path
+Option service_account_file.
+Service Account Credentials JSON file path.
 Leave blank normally.
 Needed only if you want use SA instead of interactive login.
-Enter a string value. Press Enter for the default ("").
+Leading `~` will be expanded in the file name as will environment variables such as `${RCLONE_CONFIG_DIR}`.
+Enter a value. Press Enter to leave empty.
 service_account_file><br>
 Edit advanced config? (y/n)
 y) Yes
-n) No
+n) No (default)
 y/n> <b>n</b><br>
-Remote config
 Use auto config?
  * Say Y if not sure
  * Say N if you are working on a remote or headless machine
-y) Yes
+y) Yes (default)
 n) No
-y/n> <b>n</b><br>
-If your browser doesn't open automatically go to the following link: https://accounts.google.com/o/oauth2/auth?access_type=offline&client_id=425159802070-tup27t8cv4h2z3cjkqfmft4n8gju76lf.apps.googleusercontent.com&redirect_uri=urn%3Aietf%3Awg%3Aoauth%3A2.0%3Aoob&response_type=code&scope=https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fdrive&state=18109698827ea077947354ca9dab0b80
-Log in and authorize rclone for access
+y/n> <b>y</b><br>
 </pre>
 
-<p>Copy the URL that gets printed on your screen to a new browser window. You can do this on any computer, it doesn’t have to be your Pi. In the page flow that follows select your user account (if required) and confirm that you want to give your application access to your Google Drive. Copy the verification code from the confirmation page and fill it in below.</p>
+<p>Google no longer offers the <a target="_blank" rel="noopener" href="https://developers.google.com/identity/protocols/oauth2/native-app#manual-copypaste">out-of-band (OOB)</a> method of configuring a client, which used to be the most convenient option for this situation. A good overview can also be found in the <a target="_blank" rel="noopener" href="https://rclone.org/remote_setup/">rclone documentation</a>. You have several options here now:</p>
+<ul>
+<li>1a) If you are working on your Raspberry Pi in the GUI, you’re all set. Select <strong>Yes</strong> (autoconfig) and just follow the prompts.</li>
+<li>1b) If you are logged into your headless Raspberry Pi via SSH, i.e. one that doesn’t have a display connected and no GUI, you can use SSH port forwarding to pass this authorization step.</li>
+<li>2 ) If none of the above are true, you need another desktop machine with the same version of rclone installed on which you perform a remote authorization step. In that case you need to select <strong>No</strong> in the previous question and follow the prompts.</li>
+</ul>
+<p>I’m assuming here that you’re in situation 1b, i.e. logged in via SSH, and have chosen <strong>Yes</strong> (auto config) in the previous question. Rclone config continues:</p>
 <pre>
-Enter verification code> <b>4/PzWg7ZOEvXIoa9tI7OMjerPq_X5UpsES5ayNvtG8Gf9TK30FERTVrCM</b><br>
-Configure this as a team drive?
-y) Yes
-n) No
-y/n> <b>n</b><br>
---------------------
-[gdrive]
-type = drive
-client_id = 425159802070-tup27t8cv4h2z3cjkqfmft4n8gju76lf.apps.googleusercontent.com
-client_secret = MspFTowlsy0SUSRm-1RvcTyx
-scope = drive
-token = {"access_token":"xa14.Gv7qcPS5TvrumTpNplGxg5Ndct1gd6yica0d80iFjbKXJ3KpgneZLvn-Tg-YgLPXcEesHubbBcyyeEjGGb9mP5GhwLnEDxaPhPS3fj6ddTcmMUUOdjOhYW-rb1xY","token_type":"Bearer","refresh_token":"1/8jxfWbRseQmqrb5aebwK9zfwZRH0IjZhv-9lmtqsVC8",
-"expiry":"2020-01-23T16:21:03.502362868-07:00"}
---------------------
+NOTICE: Make sure your Redirect URL is set to "http://127.0.0.1:53682/" in your custom config.
+NOTICE: If your browser doesn't open automatically go to the following link: http://127.0.0.1:53682/auth?state=5l4XXXXXXXXX-Iw
+NOTICE: Log in and authorize rclone for access
+NOTICE: Waiting for code...
 </pre>
 
-<p>This last section shown above is a copy of the information that will be put into the <code>$HOME/.config/rclone/rclone.conf</code> config file. If everything looks correct we’re going to accept it and exit the configuration menu.</p>
+<p>Rclone config is waiting for a web browser to connect to your Raspberry Pi port 53682. However, we’re assuming you’re not running a GUI with a web browser on the Raspberry Pi. We’ll use SSH port forwarding to forward that port to the host machine from which you SSH into the Raspberry Pi, assuming that you are running a full desktop with GUI there and use the web browser on that host machine. To do that, open a second SSH session from your host to your Raspberry Pi, just to forward the port. On your host type:</p>
 <pre>
-y) Yes this is OK
+ssh -L localhost:53682:localhost:53682 &lt;your-pi-user>@&lt;your-pi-host>
+</pre>
+
+<p>After you log in, just leave this second terminal window alone.</p>
+<p>Copy the URL that got printed on your screen earlier (<a target="_blank" rel="noopener" href="http://127.0.0.1:53682/auth?state=5l4XXXXXXXXX-Iw">http://127.0.0.1:53682/auth?state=5l4XXXXXXXXX-Iw</a>) to a new browser window on your desktop machine. In the page flow that follows, select your user account (if required) and confirm that you want to give your application access to your Google Drive. Eventually you’ll get to a web page that says:</p>
+<pre>
+<b>Success!</b>
+All done. Please go back to rclone.
+</pre>
+
+<p>You can close that browser window and the second terminal window that you have opened for the SSH port forwarding. In the meantime, in the first terminal window, rclone config has continued:</p>
+<pre>
+NOTICE: Got code<br>
+Configure this as a Shared Drive (Team Drive)?
+
+y) Yes
+n) No (default)
+y/n> <b>n</b><br>
+Configuration complete.
+Options:
+- type: drive
+- client_id: 103XXXXXXXXXXXuso.apps.googleusercontent.com
+- client_secret: GOCXXXXXXXXXXXXXXyXc
+- scope: drive
+- token: {"access_token":"ya2XXXXXXXXX163","token_type":"Bearer","refresh_token":"1//06_XXXXXXXXXXXXjb8","expiry":"2022-09-21T22:42:18.157766331-07:00"}
+- team_drive:
+</pre>
+
+<p>This last section shown above is a copy of the information that will be put into your <code>$HOME/.config/rclone/rclone.conf</code> config file. If everything looks correct we’re going to accept it and exit the configuration menu.</p>
+<pre>
+Keep this "gdrive" remote?
+y) Yes this is OK (default)
 e) Edit this remote
 d) Delete this remote
 y/e/d> <b>y</b><br>
@@ -350,13 +380,13 @@ e/n/d/r/c/s/q> <b>q</b>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ls -l ~/mnt/gdrive</span><br></pre></td></tr></table></figure>
 <p>This should again list all files in the top-level directory of your Google Drive. Since your cloud storage is now part of the regular file system, any program on you Pi can access it just like any other file. After this test stop the above rclone command in the first terminal with Ctrl-C.</p>
 <h2 id="Automatically-Mounting-Google-Drive"><a href="#Automatically-Mounting-Google-Drive" class="headerlink" title="Automatically Mounting Google Drive"></a>Automatically Mounting Google Drive</h2><p>The setup above is all that is necessary to use the <code>rclone mount</code> command and mount Google Drive by hand into your file system whenever you need it. However, that is a bit cumbersome. It would be better if Google drive were mounted automatically whenever the corresponding user logs in. This can be achieved with <a target="_blank" rel="noopener" href="https://github.com/systemd/systemd">systemd</a>, a daemon that starts and stops services when needed. Systemd operates in one of two modes, a <em>–system</em> mode that handles machine-wide services such as bringing up networking, and a <em>–user</em> mode that deals with per-user services such as starting the desktop environment and in our case we want it to mount the rclone FUSE file system for Google Drive. A good place to learn more is the archlinux wiki for <a target="_blank" rel="noopener" href="https://wiki.archlinux.org/index.php/Systemd/User">per-user systemd</a>.</p>
-<h3 id="Configuring-Systemd"><a href="#Configuring-Systemd" class="headerlink" title="Configuring Systemd"></a>Configuring Systemd</h3><p>To tell systemd what to do it depends on configuration files in some standard locations. One of these locations where systemd looks for <em>user</em> config files is <code>$HOME/.config/systemd/user</code>. To have the rclone FUSE file system mounted automatically at login we’ll create a <code>~/.config/systemd/user/rclone@.service</code> file with the following contents:</p>
-<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">[Unit]</span></span><br><span class="line"><span class="attr">Description</span>=rclone: Remote FUSE filesystem for cloud storage config %i</span><br><span class="line"><span class="attr">Documentation</span>=man:rclone(<span class="number">1</span>)</span><br><span class="line"></span><br><span class="line"><span class="section">[Service]</span></span><br><span class="line"><span class="attr">Type</span>=notify</span><br><span class="line"><span class="attr">ExecStartPre</span>=/bin/mkdir -p %h/mnt/%i</span><br><span class="line"><span class="attr">ExecStart</span>= \</span><br><span class="line">  /usr/bin/rclone mount \</span><br><span class="line">    --fast-list \</span><br><span class="line">    --vfs-cache-mode writes \</span><br><span class="line">    --vfs-cache-max-size 100M  \</span><br><span class="line">    %i: %h/mnt/%i</span><br><span class="line"></span><br><span class="line"><span class="section">[Install]</span></span><br><span class="line"><span class="attr">WantedBy</span>=default.target</span><br></pre></td></tr></table></figure>
+<h3 id="Configuring-Systemd"><a href="#Configuring-Systemd" class="headerlink" title="Configuring Systemd"></a>Configuring Systemd</h3><p>To tell systemd what to do it depends on configuration files in some standard locations. One of these locations where systemd looks for <em>user</em> config files is <code>$HOME/.config/systemd/user</code>. To have the rclone FUSE file system mounted automatically at login, create a <code>~/.config/systemd/user/rclone@.service</code> file with the following contents:</p>
+<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">[Unit]</span></span><br><span class="line"><span class="attr">Description</span>=rclone: Remote FUSE filesystem for cloud storage config %i</span><br><span class="line"><span class="attr">Documentation</span>=man:rclone(<span class="number">1</span>)</span><br><span class="line"></span><br><span class="line"><span class="section">[Service]</span></span><br><span class="line"><span class="attr">Type</span>=notify</span><br><span class="line"><span class="attr">ExecStartPre</span>=/bin/mkdir -p %h/mnt/%i</span><br><span class="line"><span class="attr">ExecStart</span>= \</span><br><span class="line">  /usr/bin/rclone mount \</span><br><span class="line">    --vfs-cache-mode writes \</span><br><span class="line">    --vfs-cache-max-size 100M  \</span><br><span class="line">    %i: %h/mnt/%i</span><br><span class="line"></span><br><span class="line"><span class="section">[Install]</span></span><br><span class="line"><span class="attr">WantedBy</span>=default.target</span><br></pre></td></tr></table></figure>
 
 <blockquote>
 <p>Note: If you’re using rclone version &lt; 1.46, remove the <code>--vfs-cache-max-size</code> line, as that flag is not yet supported in earlier versions.</p>
 </blockquote>
-<p>Here the special @ syntax in the config filename defines a service template which allows to write a single config file that can be used for multiple instantiations. Even though we wouldn’t really need a service template for our simple use case, we use it so the configuration already supports multiple mounts, e.g. if you also want to use it for other cloud storage providers as well. When using the systemd service name, which derives from the file name, you just append an <em>instance name</em> to @ and systemd will replace all occurrences of <em>%i</em> in the config file with that <em>instance name</em>. In our case the instance name represents the rclone <em>remote</em> name which we have configured in the rclone.conf file above, i.e. <em>gdrive</em> in our case.</p>
+<p>Here the special @ syntax in the config filename defines a service template which allows to write a single config file that can be used for multiple instantiations. Even though we wouldn’t really need a service template for our simple use case, we use it so the configuration already supports multiple mounts, e.g. if you also want to use it for other cloud storage providers as well. When using the systemd service name, which derives from the file name, you just append an <em>instance name</em> to @ and systemd will replace all occurrences of <em>%i</em> in the config file with that <em>instance name</em>. In our case the instance name represents the rclone <em>remote</em> name which we have configured in the rclone.conf file above, i.e. <em>gdrive</em>.</p>
 <p>On the <code>rclone mount</code> command line above we use a particular set of mount options that are supported for Google Drive. A full list of options can be found in the <a target="_blank" rel="noopener" href="https://rclone.org/drive/#standard-options">rclone Google Drive documentation</a>.  More details on general mount options can be found in the <a target="_blank" rel="noopener" href="https://rclone.org/commands/rclone_mount/">rclone mount documentation</a>.</p>
 <p>Once we’ve got the config file in place we need to let systemd know about the new configuration for our <em>gdrive</em> rclone remote:</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl --user <span class="built_in">enable</span> rclone@gdrive</span><br></pre></td></tr></table></figure>
@@ -370,7 +400,7 @@ e/n/d/r/c/s/q> <b>q</b>
 <h3 id="Starting-User-Systemd-at-Boot-Time"><a href="#Starting-User-Systemd-at-Boot-Time" class="headerlink" title="Starting User-Systemd at Boot Time"></a>Starting User-Systemd at Boot Time</h3><p>For some use cases, mounting at user login time is still not quite enough. For example on my system I run an <a target="_blank" rel="noopener" href="https://www.rstudio.com/">RStudio Server</a>, which is a web IDE for the R programming language. The RStudio Server web interface first presents a login page to authenticate the user. Once it has checked the user’s credentials it starts an rsession for them. However, starting an rsession with the UID of the authenticated user doesn’t constitute a <em>login</em> or <em>session</em> for that user. Thus no systemd user session is started and the actions that would mount the cloud storage are not performed, so the RStudio IDE doesn’t have access to the cloud storage directory of the user.</p>
 <p>There is a solution to this problem though. We can instruct systemd to <a target="_blank" rel="noopener" href="https://wiki.archlinux.org/index.php/Systemd/User#Automatic_start-up_of_systemd_user_instances">start a user session at boot time</a> instead of login time with the following command:</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">loginctl enable-linger <span class="variable">$USER</span></span><br></pre></td></tr></table></figure>
-<p>Now, whenever our Raspberry Pi reboots, a systemd user session is started immediately for that user, mounting the configured Google Drive and enabling use cases like RStudio Server mentioned above.</p>
+<p>Now, whenever our Raspberry Pi boots, a systemd user session is started immediately for that user, mounting the configured Google Drive and enabling use cases like RStudio Server mentioned above.</p>
 <p>If you’ve followed the setup to here, congratulations! You’ve got your Raspberry Pi connected to your Google Drive and can easily access files from your cloud storage from any program running on your Pi just by accessing files under $HOME/mnt/gdrive.</p>
 
         </div>
@@ -442,18 +472,18 @@ e/n/d/r/c/s/q> <b>q</b>
             "@type": "Person",
             "name": "Artur Klauser"
         },
-        "headline": "Mounting Google Drive on Raspberry Pi - 2019 Version",
-        "image": "https://nexus.eddiesinentropy.net/2019/04/21/Mounting-Google-Drive-on-Raspberry-Pi/RPi-GDrive.png",
+        "headline": "Mounting Google Drive on Raspberry Pi",
+        "image": "https://nexus.eddiesinentropy.net/2022/09/20/Mounting-Google-Drive-on-Raspberry-Pi-2/RPi-GDrive.png",
         "keywords": "Raspberry Pi",
         "genre": "",
-        "datePublished": "2019-04-21",
-        "dateCreated": "2019-04-21",
+        "datePublished": "2022-09-20",
+        "dateCreated": "2022-09-20",
         "dateModified": "2022-09-22",
-        "url": "https://nexus.eddiesinentropy.net/2019/04/21/Mounting-Google-Drive-on-Raspberry-Pi/",
+        "url": "https://nexus.eddiesinentropy.net/2022/09/20/Mounting-Google-Drive-on-Raspberry-Pi-2/",
         "description": "
 
 How to use rclone, FUSE, and systemd to automatically mount your Google Drive on your Raspberry Pi.",
-        "wordCount": 2394
+        "wordCount": 2870
     }
 </script>
 
@@ -481,16 +511,12 @@ How to use rclone, FUSE, and systemd to automatically mount your Google Drive on
         
 <nav id="article-nav">
     
-        <a href="/2020/01/12/Building-Multi-architecture-Docker-Images-With-Buildx/" id="article-nav-newer" class="article-nav-link-wrap">
-        <strong class="article-nav-caption">newer</strong>
-        <p class="article-nav-title">
-        
-            Building Multi-Architecture Docker Images With Buildx
-        
-        </p>
-        <i class="icon fa fa-chevron-right" id="icon-chevron-right"></i>
-    </a>
     
+        <a href="/2020/02/04/Raspberry-Pi-OpenVPN-Server-for-ChromeBooks/" id="article-nav-older" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">older</strong>
+        <p class="article-nav-title">Raspberry Pi OpenVPN Server for ChromeBooks</p>
+        <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
+        </a>
     
 </nav>
 
@@ -659,7 +685,7 @@ How to use rclone, FUSE, and systemd to automatically mount your Google Drive on
     var disqus_shortname = 'eddiesinentropy';
     
     
-    var disqus_url = 'https://nexus.eddiesinentropy.net/2019/04/21/Mounting-Google-Drive-on-Raspberry-Pi/';
+    var disqus_url = 'https://nexus.eddiesinentropy.net/2022/09/20/Mounting-Google-Drive-on-Raspberry-Pi-2/';
     
     (function() {
     var dsq = document.createElement('script');
