@@ -21,7 +21,7 @@
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://nexus.eddiesinentropy.net/2022/09/20/Mounting-Google-Drive-on-Raspberry-Pi-2/RPi-GDrive.png">
 <meta property="article:published_time" content="2022-09-20T21:09:00.000Z">
-<meta property="article:modified_time" content="2022-09-23T16:03:26.852Z">
+<meta property="article:modified_time" content="2022-09-24T03:51:58.775Z">
 <meta property="article:author" content="Artur Klauser">
 <meta property="article:tag" content="Raspberry Pi">
 <meta name="twitter:card" content="summary">
@@ -151,7 +151,7 @@
 <div class="article-date">
   <i class="fa fa-calendar-plus-o"></i>
   <a href="/2022/09/20/Mounting-Google-Drive-on-Raspberry-Pi-2/" class="article-date">
-     <time datetime="2022-09-23T16:03:26.852Z" itemprop="dateModified">2022-09-23</time>
+     <time datetime="2022-09-24T03:51:58.775Z" itemprop="dateModified">2022-09-23</time>
   </a>
 </div>
 
@@ -243,7 +243,7 @@ Copy the <em>client ID</em> and <em>client secret</em> since we’ll need it for
 <h3 id="Setting-up-the-Rclone-Configuration"><a href="#Setting-up-the-Rclone-Configuration" class="headerlink" title="Setting up the Rclone Configuration"></a>Setting up the Rclone Configuration</h3><p>Back on the Raspberry Pi, log in as the Linux user who should be able to access the Google Drive files and run:</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rclone config</span><br></pre></td></tr></table></figure>
 <p>Select the following answers:</p>
-<pre>
+<pre style="background-color:#eee">
 No remotes found - make a new one?
 n) New remote
 s) Set configuration password
@@ -269,7 +269,7 @@ client_id> <b>103XXXXXXXXXXXXXXXXXuso.apps.googleusercontent.com</b>
 </pre>
 
 <p>This is the <em>client ID</em> that you saved in the earlier step. If you forgot to save it, you can always find it by going to <strong>Credentials → OAuth 2.0 Client IDs → &lt;name-of-your-id&gt;</strong> and the information will be presented to you again.</p>
-<pre>
+<pre style="background-color:#eee">
 Option client_secret.
 OAuth Client Secret.
 Leave blank normally.
@@ -278,7 +278,7 @@ client_secret> <b>GOCXXXXXXXXXXXXXXXXXyXc</b>
 </pre>
 
 <p>This is the <em>client secret</em> that you saved in the earlier step.</p>
-<pre>
+<pre style="background-color:#eee">
 Option scope.
 Scope that rclone should use when requesting access from drive.
 Choose a number from below, or type in your own value.
@@ -303,7 +303,7 @@ Use auto config?
  * Say N if you are working on a remote or headless machine
 y) Yes (default)
 n) No
-y/n> <b>y</b><br>
+y/n> <b>y</b>
 </pre>
 <p>Google no longer offers the <a target="_blank" rel="noopener" href="https://developers.google.com/identity/protocols/oauth2/native-app#manual-copypaste">out-of-band (OOB)</a> method of configuring a client, which used to be the most convenient option for this situation. A good overview can also be found in the <a target="_blank" rel="noopener" href="https://rclone.org/remote_setup/">rclone documentation</a>. You have several options here now:</p>
 <ul>
@@ -312,7 +312,7 @@ y/n> <b>y</b><br>
 <li>2 ) If none of the above are true, you need another desktop machine with the same version of rclone installed on which you perform a remote authorization step. In that case you need to select <strong>No</strong> in the previous question and follow the prompts.</li>
 </ul>
 <p>I’m assuming here that you’re in situation 1b, i.e. logged in via SSH, and have chosen <strong>Yes</strong> (auto config) in the previous question. Rclone config continues:</p>
-<pre>
+<pre style="background-color:#eee">
 NOTICE: Make sure your Redirect URL is set to "http://127.0.0.1:53682/" in your custom config.
 NOTICE: If your browser doesn't open automatically go to the following link: http://127.0.0.1:53682/auth?state=5l4XXXXXXXXX-Iw
 NOTICE: Log in and authorize rclone for access
@@ -320,19 +320,17 @@ NOTICE: Waiting for code...
 </pre>
 
 <p>Rclone config is waiting for a web browser to connect to your Raspberry Pi port 53682. However, we’re assuming you’re not running a GUI with a web browser on the Raspberry Pi. We’ll use SSH port forwarding to forward that port to the host machine from which you SSH into the Raspberry Pi, assuming that you are running a full desktop with GUI there and use the web browser on that host machine. To do that, open a second SSH session from your host to your Raspberry Pi, just to forward the port. On your host type:</p>
-<pre>
-ssh -L localhost:53682:localhost:53682 &lt;your-pi-user>@&lt;your-pi-host>
-</pre>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh -L localhost:53682:localhost:53682 &lt;your-pi-user&gt;@&lt;your-pi-host&gt;</span><br></pre></td></tr></table></figure>
 
 <p>After you log in, just leave this second terminal window alone.</p>
 <p>Copy the URL that got printed on your screen earlier (<a target="_blank" rel="noopener" href="http://127.0.0.1:53682/auth?state=5l4XXXXXXXXX-Iw">http://127.0.0.1:53682/auth?state=5l4XXXXXXXXX-Iw</a>) to a new browser window on your desktop machine. In the page flow that follows, select your user account (if required) and confirm that you want to give your application access to your Google Drive. Eventually you’ll get to a web page that says:</p>
-<pre>
+<pre style="background-color:#eee">
 <b>Success!</b>
 All done. Please go back to rclone.
 </pre>
 
 <p>You can close that browser window and the second terminal window that you have opened for the SSH port forwarding. In the meantime, in the first terminal window, rclone config has continued:</p>
-<pre>
+<pre style="background-color:#eee">
 NOTICE: Got code<br>
 Configure this as a Shared Drive (Team Drive)?
 
@@ -350,7 +348,7 @@ Options:
 </pre>
 
 <p>This last section shown above is a copy of the information that will be put into your <code>$HOME/.config/rclone/rclone.conf</code> config file. If everything looks correct we’re going to accept it and exit the configuration menu.</p>
-<pre>
+<pre style="background-color:#eee">
 Keep this "gdrive" remote?
 y) Yes this is OK (default)
 e) Edit this remote
@@ -482,7 +480,7 @@ e/n/d/r/c/s/q> <b>q</b>
         "description": "
 
 How to use rclone, FUSE, and systemd to automatically mount your Google Drive on your Raspberry Pi.",
-        "wordCount": 2867
+        "wordCount": 2880
     }
 </script>
 
