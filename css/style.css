@@ -372,6 +372,16 @@ code {
 #main .main-body-content:after {
   clear: both;
 }
+.output {
+  padding: 5px 10px;
+  word-break: break-all;
+  word-wrap: break-word;
+  background-color: #f5f5f5;
+  border: 1px solid #ccc;
+  border-radius: 0.25rem;
+  font-family: monospace;
+  overflow: auto;
+}
 #header {
   height: 180px;
   position: relative;
